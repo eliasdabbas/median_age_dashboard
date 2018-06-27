@@ -4,6 +4,10 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.graph_objs as go
+import logging
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s==%(funcName)s==%(message)s')
 
 age_df = pd.read_csv('data/country_data_master.csv', 
                      usecols=lambda cols: 'perc' in cols or cols == 'country' or cols == 'median_age_total')
@@ -39,6 +43,7 @@ app.layout = html.Div([
 @app.callback(Output('median_age_graph', 'figure'),
              [Input('country_dropdown', 'value')])
 def plot_median_age(countries):
+    logging.info(msg=locals())
     df = age_df[age_df['country'].isin(countries)]
     return {
         'data': [go.Scatter(x=age_df['country'],
@@ -80,7 +85,7 @@ def plot_countries(countries):
                 
                 [go.Bar(x=age_categories,
                         y=df.iloc[x, 2:7],
-                        name=df.sort_values(['country']).iloc[x, 0],
+                        name=df.iloc[x, 0],
                         text=df.iloc[x, 2:7].astype(str) + '%',
                         hoverinfo='name+y',
                         textposition='inside',

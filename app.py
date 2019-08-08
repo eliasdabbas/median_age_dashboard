@@ -58,7 +58,7 @@ def plot_median_age(countries):
                             y=df[df['country']==c]['median_age_total'],
                             mode='markers',
                             marker={'size': 15},
-                            hovertext={'font': {'size': 30}},
+                            # hovertext={'font': {'size': 30}},
                             hoverlabel={'font': {'size': 20}},
                             name=c)
                  for c in sorted(countries)],
@@ -75,7 +75,7 @@ def plot_median_age(countries):
 @app.callback(Output('age_graph', 'figure'),
              [Input('country_dropdown', 'value')])
 def plot_countries(countries):
-    df = age_df[age_df['country'].isin(countries)]
+    df = age_df[age_df['country'].isin(countries)].sort_values('country')
     return {
         'data': [go.Bar(x=age_categories,
                         y=[0 for i in range(len(age_categories))],

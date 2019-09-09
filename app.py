@@ -31,12 +31,12 @@ app.layout = html.Div([
     ], style={'width': '50%', 'margin-left': '25%'}),
     dcc.Graph(id='age_graph',
              config={'displayModeBar': False}),
-    html.Div([
-    html.Content('Data: CIA Factbook'), html.Content('  '),
-    html.A('Median Age', href='https://www.cia.gov/library/publications/the-world-factbook/fields/2177.html'), html.Content('   '),
-    html.A('Age Structure', href='https://www.cia.gov/library/publications/the-world-factbook/fields/2010.html'),
-        
-    ], style={'display': 'inline'}),
+    # html.Div([
+    # html.Content('Data: CIA Factbook'), html.Content('  '),
+    # html.A('Median Age', href='https://www.cia.gov/library/publications/the-world-factbook/fields/2177.html'), html.Content('   '),
+    # html.A('Age Structure', href='https://www.cia.gov/library/publications/the-world-factbook/fields/2010.html'),
+    #
+    # ], style={'display': 'inline'}),
 
 ], style={'background-color': '#eeeeee'})
 
